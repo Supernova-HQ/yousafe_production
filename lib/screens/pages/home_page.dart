@@ -4,6 +4,7 @@ import 'package:yousafe/screens/pages/hotspots_page.dart';
 import 'package:yousafe/screens/pages/live_location_page.dart';
 import 'package:yousafe/screens/pages/notifications_page.dart';
 import 'package:yousafe/screens/pages/profile_page.dart';
+import 'package:yousafe/screens/pages/retrieve_contacts_page.dart';
 import 'package:yousafe/screens/pages/sos_home_page.dart';
 import 'package:yousafe/screens/pages/sos_request.dart';
 import 'package:yousafe/screens/pages/onboarding_overlay.dart';
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   bool _isFirstLaunch = true;
   final List<Widget> _pages = [
     SOSHomePage(),
-    EmergencyContactsPage(),
+    RetrieveContactsPage(),
     LiveLocationPage(),
     ProfilePage(),
   ];

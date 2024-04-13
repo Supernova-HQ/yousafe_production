@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:http/http.dart' as http;
 import 'package:yousafe/screens/pages/sos_request.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LiveLocationPage extends StatefulWidget {
   @override
@@ -15,6 +18,7 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
   CameraPosition? initialCameraPosition;
   LatLng? currentLatLng;
   Set<Circle> _circles = {};
+  final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
 
   @override
   void initState() {
@@ -42,7 +46,7 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
       }
     }
 
-    location.onLocationChanged.listen((LocationData newLocation) {
+    location.onLocationChanged.listen((LocationData newLocation) async {
       setState(() {
         currentLocation = newLocation;
         currentLatLng = LatLng(newLocation.latitude!, newLocation.longitude!);
@@ -55,7 +59,37 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
           mapController!.animateCamera(CameraUpdate.newCameraPosition(initialCameraPosition!));
         }
       });
+
+      // Post the user's location to the endpoint
+      await _postUserLocation(newLocation.latitude!, newLocation.longitude!);
     });
+  }
+
+  Future<void> _postUserLocation(double latitude, double longitude) async {
+    final accessToken = await _secureStorage.read(key: 'access_token');
+    final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/update-location/');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'latitude': latitude,
+          'longitude': longitude,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print('User location updated successfully');
+      } else {
+        print('Failed to update user location. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error updating user location: $error');
+    }
   }
 
   void _updateCircles() {
@@ -101,9 +135,9 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
                 child: FloatingActionButton(
                   onPressed: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SOSRequestWidget()),
-                  );
+                      context,
+                      MaterialPageRoute(builder: (context) => SOSRequestWidget()),
+                    );
                     print('SOS button pressed');
                   },
                   child: Text(

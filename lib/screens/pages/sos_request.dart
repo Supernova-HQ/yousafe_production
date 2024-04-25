@@ -12,6 +12,7 @@ class SOSRequestWidget extends StatefulWidget {
 class _SOSRequestWidgetState extends State<SOSRequestWidget> {
   String _status = 'Calling for Help...';
   bool _success = false;
+  bool _isCancelled = false;
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
   List<Map<String, dynamic>> emergencyContacts = [];
 
@@ -66,14 +67,18 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
   }
 
   Future<void> _startSOSProcess() async {
+    if (_isCancelled) return;
+
     // Simulate calling for help
     await Future.delayed(Duration(seconds: 2));
+    if (_isCancelled) return;
     setState(() {
       _status = 'Reaching out to your emergency contacts';
     });
 
     // Simulate reaching out to emergency contacts
     await Future.delayed(Duration(seconds: 2));
+    if (_isCancelled) return;
     setState(() {
       _status = 'Sending your location to emergency contacts';
     });
@@ -83,9 +88,11 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
 
     // Simulate sending location via SMS
     await Future.delayed(Duration(seconds: 2));
+    if (_isCancelled) return;
 
     // After completing the SOS process, wait for 4 seconds before displaying success message
     await Future.delayed(Duration(seconds: 4));
+    if (_isCancelled) return;
     setState(() {
       _status = 'Your location has been sent out to all contacts';
       _success = true;
@@ -93,8 +100,16 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
 
     // Wait for 4 seconds before exiting
     await Future.delayed(Duration(seconds: 4));
+    if (_isCancelled) return;
 
     // Pop the screen after 4 seconds
+    Navigator.pop(context);
+  }
+
+  void _cancelSOSProcess() {
+    setState(() {
+      _isCancelled = true;
+    });
     Navigator.pop(context);
   }
 
@@ -105,6 +120,13 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('SOS Request'),
+          actions: [
+            if (!_success)
+              IconButton(
+                icon: Icon(Icons.cancel),
+                onPressed: _cancelSOSProcess,
+              ),
+          ],
         ),
         body: Center(
           child: Column(
@@ -125,7 +147,7 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
                   repeat: true,
                 ),
               SizedBox(height: 16),
-              CircularProgressIndicator(), // Show loading indicator
+              if (!_success) CircularProgressIndicator(), // Show loading indicator
               SizedBox(height: 16),
               Text(_status), // Show status message
             ],

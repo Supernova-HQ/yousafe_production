@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   bool _isFirstLaunch = true;
   final List<Widget> _pages = [
     SOSHomePage(),
-    RetrieveContactsPage(),
+    EmergencyContactsPage(),
     LiveLocationPage(),
     ProfilePage(),
   ];

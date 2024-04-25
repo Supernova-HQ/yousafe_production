@@ -17,6 +17,33 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
   @override
   void initState() {
     super.initState();
+    fetchEmergencyContacts();
+  }
+
+  Future<void> fetchEmergencyContacts() async {
+    final accessToken = await storage.read(key: 'access_token');
+    final url = 'https://supernova-fqn8.onrender.com/api/main/contacts/';
+
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final contacts = List<Map<String, dynamic>>.from(data['contacts']);
+        setState(() {
+          emergencyContacts = contacts;
+        });
+      } else {
+        showSnackBar('Failed to fetch emergency contacts. Please try again.');
+      }
+    } catch (error) {
+      showSnackBar('Error fetching emergency contacts. Please try again later.');
+    }
   }
 
   Future<void> createEmergencyContact(String name, String mobileNo) async {
@@ -34,11 +61,9 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
       );
 
       if (response.statusCode == 201) {
-        final contactData = jsonDecode(response.body);
-        setState(() {
-          emergencyContacts.add(contactData);
-        });
         showSnackBar('Emergency contact added successfully.', isError: false);
+        // Fetch the updated list of emergency contacts
+        await fetchEmergencyContacts();
       } else {
         showSnackBar('Failed to add emergency contact. Please try again.');
       }
@@ -55,9 +80,6 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
           if (emergencyContacts.length < 5) {
             final name = contact.displayName ?? '';
             final mobileNo = contact.phones?.first.value ?? '';
-            setState(() {
-              emergencyContacts.add({'name': name, 'mobile_no': mobileNo});
-            });
             await createEmergencyContact(name, mobileNo);
           } else {
             showSnackBar('You can only add up to 5 contacts.');
@@ -71,62 +93,82 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
     }
   }
 
-  void _showDeleteConfirmationBottomSheet(int index) {
-    final contact = emergencyContacts[index];
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Are you sure you want to delete "${contact['name']}"?',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+ void _showDeleteConfirmationBottomSheet(int index) {
+  final contact = emergencyContacts[index];
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Are you sure you want to delete "${contact['name']}"?',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the bottom sheet
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Cancel'),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context); // Close the bottom sheet
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Cancel'),
+                ElevatedButton(
+                  onPressed: () async {
+                    final contactId = contact['id'];
+                    final accessToken = await storage.read(key: 'access_token');
+                    final url = 'https://supernova-fqn8.onrender.com/api/main/delete-contact/$contactId/';
+
+                    try {
+                      final response = await http.delete(
+                        Uri.parse(url),
+                        headers: {
+                          'Authorization': 'Bearer $accessToken',
+                        },
+                      );
+
+                      if (response.statusCode == 204) {
+                        showSnackBar('Contact deleted successfully.', isError: false);
+                        // Fetch the updated list of emergency contacts
+                        await fetchEmergencyContacts();
+                      } else {
+                        showSnackBar('Failed to delete contact. Please try again.');
+                      }
+                    } catch (error) {
+                      showSnackBar('Error deleting contact. Please try again later.');
+                    }
+
+                    Navigator.pop(context); // Close the bottom sheet
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Delete',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        emergencyContacts.removeAt(index);
-                      });
-                      Navigator.pop(context); // Close the bottom sheet
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Delete',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 
   void showSnackBar(String message, {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -169,6 +211,7 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
         ],
       ),
       body: Container(
+        color: Colors.white,
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,6 +231,7 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
                 itemBuilder: (context, index) {
                   final contact = emergencyContacts[index];
                   return ListTile(
+                    tileColor: Colors.white,
                     title: Text(contact['name']),
                     subtitle: Text(contact['mobile_no']),
                     trailing: IconButton(

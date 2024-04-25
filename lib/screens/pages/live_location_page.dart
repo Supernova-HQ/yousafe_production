@@ -60,12 +60,12 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
         }
       });
 
-      // Post the user's location to the endpoint
-      await _postUserLocation(newLocation.latitude!, newLocation.longitude!);
+      // Send the location to the backend API
+      await _sendLocationToBackend(newLocation.latitude!, newLocation.longitude!);
     });
   }
 
-  Future<void> _postUserLocation(double latitude, double longitude) async {
+  Future<void> _sendLocationToBackend(double latitude, double longitude) async {
     final accessToken = await _secureStorage.read(key: 'access_token');
     final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/update-location/');
 
@@ -83,12 +83,12 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
       );
 
       if (response.statusCode == 200) {
-        print('User location updated successfully');
+        print('Location sent to backend successfully');
       } else {
-        print('Failed to update user location. Status code: ${response.statusCode}');
+        print('Failed to send location to backend. Status code: ${response.statusCode}');
       }
     } catch (error) {
-      print('Error updating user location: $error');
+      print('Error sending location to backend: $error');
     }
   }
 

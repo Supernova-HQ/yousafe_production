@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yousafe/screens/auth/account_select.dart';
 import 'package:yousafe/screens/auth/signup_screen.dart';
 
 class OnboardingFour extends StatelessWidget {
@@ -43,7 +42,7 @@ class OnboardingFour extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AccountSelectScreen()),
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

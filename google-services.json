@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "833851811993",
+    "project_id": "yousafeapp-dd9a5",
+    "storage_bucket": "yousafeapp-dd9a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833851811993:android:467206c6d737a01243b008",
+        "android_client_info": {
+          "package_name": "com.example.yousafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGEMsd3jbclp7oe6yUBR-A7d3a3tusvJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

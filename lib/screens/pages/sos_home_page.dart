@@ -10,8 +10,6 @@ class SOSHomePage extends StatefulWidget {
 }
 
 class _SOSHomePageState extends State<SOSHomePage> {
-  bool _isSendingSOSFromButton = false;
-
   @override
   void initState() {
     super.initState();
@@ -25,9 +23,7 @@ class _SOSHomePageState extends State<SOSHomePage> {
       notificationImportance: AndroidNotificationImportance.Default,
       notificationIcon: AndroidResource(name: 'background_icon', defType: 'drawable'),
     );
-
     bool success = await FlutterBackground.initialize(androidConfig: backgroundConfig);
-
     if (success) {
       FlutterBackground.enableBackgroundExecution();
     }
@@ -43,7 +39,6 @@ class _SOSHomePageState extends State<SOSHomePage> {
       shakeCountResetTime: 3000,
       shakeThresholdGravity: 2.7,
     );
-
     detector.startListening();
   }
 
@@ -64,24 +59,17 @@ class _SOSHomePageState extends State<SOSHomePage> {
   }
 
   void _startSOSProcess({bool fromButton = false}) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SOSRequestWidget()),
+    );
+
     if (fromButton) {
-      _isSendingSOSFromButton = true;
-    }
-
-    if (FlutterBackground.isBackgroundExecutionEnabled || _isSendingSOSFromButton) {
-      // App is in the background or SOS triggered from button, send SOS directly
-      print('Sending SOS from ${FlutterBackground.isBackgroundExecutionEnabled ? 'background' : 'button'}...');
-      // Implement sending SOS logic here
+      print('Sending SOS from button...');
     } else {
-      // App is in the foreground and SOS triggered from shake, navigate to SOSRequestWidget
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SOSRequestWidget()),
-      );
-      print('Sending SOS from foreground...');
+      print('Sending SOS from shake...');
     }
-
-    _isSendingSOSFromButton = false;
+    // Implement sending SOS logic here
   }
 
   @override

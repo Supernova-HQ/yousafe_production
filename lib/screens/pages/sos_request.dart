@@ -24,28 +24,28 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
   }
 
   Future<void> _fetchEmergencyContacts() async {
-    final accessToken = await _secureStorage.read(key: 'access_token');
-    final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/contacts');
+  final accessToken = await _secureStorage.read(key: 'access_token');
+  final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/contacts');
 
-    try {
-      final response = await http.get(
-        url,
-        headers: {'Authorization': 'Bearer $accessToken'},
-      );
+  try {
+    final response = await http.get(
+      url,
+      headers: {'Authorization': 'Bearer $accessToken'},
+    );
 
-      if (response.statusCode == 200) {
-        final List<dynamic> contactsData = jsonDecode(response.body);
-        setState(() {
-          emergencyContacts = contactsData.cast<Map<String, dynamic>>();
-        });
-      } else {
-        print('Failed to fetch emergency contacts. Status code: ${response.statusCode}');
-      }
-    } catch (error) {
-      print('Error fetching emergency contacts: $error');
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final List<dynamic> contactsData = responseData['contacts']; // Assuming the contacts are stored under the 'contacts' key
+      setState(() {
+        emergencyContacts = contactsData.map((contact) => Map<String, dynamic>.from(contact)).toList();
+      });
+    } else {
+      print('Failed to fetch emergency contacts. Status code: ${response.statusCode}');
     }
+  } catch (error) {
+    print('Error fetching emergency contacts: $error');
   }
-
+}
   Future<void> _sendEmergencySMS() async {
     final accessToken = await _secureStorage.read(key: 'access_token');
     final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/emergency/');

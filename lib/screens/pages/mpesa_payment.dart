@@ -5,7 +5,7 @@ class MPesaPaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('M-Pesa Payment'),
+        title: Text('Mobile Payment'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -13,13 +13,13 @@ class MPesaPaymentPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'For payment kindly use the below MPesa number to make payments. Choose one option',
+              'For payment kindly use the below MOMO number to make payments. Choose one option',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0),
             ),
             SizedBox(height: 16.0),
             Text(
-              '1. Send Ksh 150 to +254791814113 to pay for student plan',
+              '1. Send GHC 10 to +2335362323333 to pay for student plan',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.0,
@@ -28,7 +28,7 @@ class MPesaPaymentPage extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             Text(
-              '2. Send Ksh 750 to +254791814113 to pay for Individual plan',
+              '2. Send GHC 50 to +2335362323333 to pay for Individual plan',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.0,

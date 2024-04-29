@@ -51,7 +51,7 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
     final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/emergency/');
 
     try {
-      final response = await http.get(
+      final response = await http.post(
         url,
         headers: {'Authorization': 'Bearer $accessToken'},
       );

@@ -45,7 +45,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
               },
               child: _buildSubscriptionOption(
                 'Student Plan',
-                '\For Ksh 150.00/ month, this plan includes SOS Button,add upto 5 Emergency contacts and live location sharing',
+                '\For GHC 12.00/ month, this plan includes SOS Button,add upto 5 Emergency contacts and live location sharing',
                 '',
                 _selectedSubscription == 'Annual - 2 Months free'
                     ? Colors.purple[100]!
@@ -61,7 +61,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
               },
               child: _buildSubscriptionOption(
                 'Individual User Plan',
-                '\Ksh 750.00/ month, this plan includes SOS Button,add upto 5 Emergency contacts and live location sharing and Trauma counselling',
+                '\GHC 50.00/ month, this plan includes SOS Button,add upto 5 Emergency contacts and live location sharing and Trauma counselling',
                 'Free Counselling',
                 _selectedSubscription == 'Monthly - 2 weeks free'
                     ? Colors.purple[100]!

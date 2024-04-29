@@ -60,6 +60,8 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
         }
       });
 
+      print('Latitude: ${newLocation.latitude}, Longitude: ${newLocation.longitude}');
+
       // Send the location to the backend API
       await _sendLocationToBackend(newLocation.latitude!, newLocation.longitude!);
     });

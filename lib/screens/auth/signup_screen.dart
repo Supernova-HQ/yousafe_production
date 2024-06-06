@@ -4,7 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:yousafe/screens/auth/login_screen.dart';
-import 'package:yousafe/screens/pages/emergency_contacts_page.dart';
 import 'package:yousafe/screens/pages/payments_page.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -222,7 +221,7 @@ class SignupScreenState extends State<SignupScreen> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.purple,
+                          backgroundColor: Colors.purple,
                           padding: EdgeInsets.all(16.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

@@ -57,7 +57,7 @@ class MPesaPaymentPage extends StatelessWidget {
               child: Text('Go to Login',
                   style: TextStyle(color: Colors.white)),
               style: ElevatedButton.styleFrom(
-                primary: Colors.purple,
+                backgroundColor: Colors.purple,
                 padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
                 textStyle: TextStyle(
                   fontSize: 16.0,

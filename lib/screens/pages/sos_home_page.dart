@@ -80,7 +80,7 @@ class _SOSHomePageState extends State<SOSHomePage> {
         child: ElevatedButton(
           onPressed: () => _startSOSProcess(fromButton: true),
           style: ElevatedButton.styleFrom(
-            primary: Colors.red[600],
+            backgroundColor: Colors.red[600],
             shape: CircleBorder(),
             padding: EdgeInsets.all(80),
           ),

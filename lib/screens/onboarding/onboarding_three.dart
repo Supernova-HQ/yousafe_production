@@ -56,7 +56,7 @@ class OnboardingThree extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
+                    backgroundColor: Colors.purple,
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),

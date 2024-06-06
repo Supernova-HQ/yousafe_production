@@ -43,7 +43,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   // Perform forgot password logic here
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purple, // Set button color to purple
+                  backgroundColor: Colors.purple, // Set button color to purple
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),

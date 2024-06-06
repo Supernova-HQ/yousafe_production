@@ -90,7 +90,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
                       style: TextStyle(color: Colors.white)),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
+                  backgroundColor: Colors.purple,
                   padding: EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

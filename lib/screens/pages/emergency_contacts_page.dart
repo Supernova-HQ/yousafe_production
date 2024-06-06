@@ -151,7 +151,7 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
                     Navigator.pop(context); // Close the bottom sheet
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

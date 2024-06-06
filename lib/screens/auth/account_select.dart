@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yousafe/screens/auth/signup_screen.dart';
-import 'package:yousafe/screens/auth/volunteer_signup_screen.dart';
 
 class AccountSelectScreen extends StatelessWidget {
   @override
@@ -37,7 +36,7 @@ class AccountSelectScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.purple,
+                        backgroundColor: Colors.purple,
                         padding: EdgeInsets.all(16.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -63,7 +62,7 @@ class AccountSelectScreen extends StatelessWidget {
                         );
                       },
                       style: OutlinedButton.styleFrom(
-                        primary: Colors.purple,
+                        backgroundColor: Colors.purple,
                         side: BorderSide(color: Colors.purple),
                         padding: EdgeInsets.all(16.0),
                         shape: RoundedRectangleBorder(

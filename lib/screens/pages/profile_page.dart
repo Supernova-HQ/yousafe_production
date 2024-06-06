@@ -83,17 +83,28 @@ class ProfilePage extends StatelessWidget {
 
 Future<void> _logout(BuildContext context) async {
   final storage = FlutterSecureStorage();
-  final token = await storage.read(key: 'access_token');
+  final accessToken = await storage.read(key: 'access_token');
+  final refreshToken = await storage.read(key: 'refresh_token');
+
+  print('Access Token: $accessToken');
+  print('Refresh Token: $refreshToken');
 
   final response = await http.post(
     Uri.parse('https://supernova-fqn8.onrender.com/api/users/logout/'),
     headers: {
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $accessToken',
+    },
+    body: {
+      'refresh_token': refreshToken,
     },
   );
 
-  if (response.statusCode == 200) {
+  print('Status code: ${response.statusCode}');
+  print('Response body: ${response.body}');
+
+  if (response.statusCode == 200 || response.statusCode == 204) {
     await storage.delete(key: 'access_token');
+    await storage.delete(key: 'refresh_token');
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => LoginScreen()),

@@ -57,7 +57,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               // Perform save changes logic 
             },
             style: ElevatedButton.styleFrom(
-              primary: Colors.purple, // Set button color to purple
+              backgroundColor: Colors.purple, // Set button color to purple
               padding: EdgeInsets.symmetric(vertical: 16.0), // Adjust padding
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0), // Add border radius

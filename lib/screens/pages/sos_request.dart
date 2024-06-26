@@ -25,7 +25,7 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
 
   Future<void> _fetchEmergencyContacts() async {
   final accessToken = await _secureStorage.read(key: 'access_token');
-  final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/contacts');
+  final url = Uri.parse('http://64.23.186.45/api/main/contacts');
 
   try {
     final response = await http.get(
@@ -48,7 +48,7 @@ class _SOSRequestWidgetState extends State<SOSRequestWidget> {
 }
   Future<void> _sendEmergencySMS() async {
     final accessToken = await _secureStorage.read(key: 'access_token');
-    final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/emergency/');
+    final url = Uri.parse('http://64.23.186.45/api/main/emergency/');
 
     try {
       final response = await http.post(

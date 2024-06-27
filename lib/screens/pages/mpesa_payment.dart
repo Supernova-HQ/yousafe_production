@@ -3,7 +3,6 @@ import 'package:flutter_paystack/flutter_paystack.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  PaystackPlugin.initialize(publicKey: 'pk_live_aa3b32698a54ea6baf8a78f748dd763a09f076d0');  // Kenya Paystack public key
   runApp(MyApp());
 }
 
@@ -37,7 +36,7 @@ class _MPesaPaymentPageState extends State<MPesaPaymentPage> {
 
   void _handlePayment(BuildContext context, int amount) async {
     Charge charge = Charge()
-      ..amount = amount * 100  // Amount in kobo (100 kobo = 1 GHC or 1 KES)
+      ..amount = amount * 100  // Amount in kobo (100 kobo = 1 KES)
       ..email = 'customer@example.com'
       ..currency = 'KES'  // or 'GHS' for Ghana
       ..reference = _getReference();

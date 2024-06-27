@@ -31,8 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   google_sign_in: ^5.4.0
-  http: ^1.2.0
-  lottie: ^3.1.0  
+  http: ^0.13.0
+  lottie: ^2.1.0  
   contacts_service: ^0.6.3
   flutter_secure_storage: ^8.1.0
   flutter_inappwebview: ^6.0.0 
@@ -58,7 +58,13 @@ dev_dependencies:
   google_maps_flutter: ^2.5.3
   google_maps_utils: ^2.0.0
 
- 
+
+
+  
+  flutter_paystack: ^1.0.5
+  url_launcher: ^6.0.20
+  cupertino_icons: ^1.0.2
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

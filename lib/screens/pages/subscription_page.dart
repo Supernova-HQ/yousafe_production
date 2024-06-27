@@ -71,11 +71,11 @@ class _SubscriptionPlansPageState extends State<SubscriptionPlansPage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            _buildPlanCard('Individual Monthly Plan', 'KES 640.00', 'PLN_h58iy9n4haqr7pi', 640),
-            _buildPlanCard('Individual Yearly Plan', 'KES 7,680.00', 'PLN_gxgspy3sv08vd7x', 7680),
-            _buildPlanCard('Average Individual Plan', 'KES 256.00', 'PLN_jliiutwl1j5hanf', 256),
-            _buildPlanCard('Family Individual Plan', 'KES 1,000.00', 'PLN_uzjf8ngzhfrpae3', 1000),
-            _buildPlanCard('Family Plan', 'KES 12,000.00', 'PLN_fhjlewwznm17att', 12000),
+            _buildPlanCard('Individual Plan (Monthly Subscription)', 'KES 640.00/Month', 'PLN_h58iy9n4haqr7pi', 640),
+            _buildPlanCard('Individual Plan (Yearly Subscription)', 'KES 7,680.00/Annum', 'PLN_gxgspy3sv08vd7x', 7680),
+            _buildPlanCard('Student Plan', 'KES 256.00/Month', 'PLN_jliiutwl1j5hanf', 256),
+            _buildPlanCard('Family Plan (Monthly Subscription)', 'KES 1,000.00/ per family per year', 'PLN_uzjf8ngzhfrpae3', 1000),
+            _buildPlanCard('Family Plan (Yearly Subscription)', 'KES 12,000.00/ per family per year', 'PLN_fhjlewwznm17att', 12000),
           ],
         ),
       ),
@@ -106,8 +106,11 @@ class _SubscriptionPlansPageState extends State<SubscriptionPlansPage> {
                 onPressed: () => _subscribe(planCode, amountValue),
                 child: Text('Subscribe'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
+                  backgroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
             ),

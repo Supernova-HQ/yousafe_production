@@ -62,6 +62,7 @@ dev_dependencies:
 
   
   flutter_paystack: ^1.0.5
+  url_launcher: ^6.0.20
   cupertino_icons: ^1.0.2
 
 

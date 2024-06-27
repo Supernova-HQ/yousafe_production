@@ -69,7 +69,7 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
 
   Future<void> _sendLocationToBackend(double latitude, double longitude) async {
     final accessToken = await _secureStorage.read(key: 'access_token');
-    final url = Uri.parse('https://supernova-fqn8.onrender.com/api/main/update-location/');
+    final url = Uri.parse('http://64.23.186.45/api/main/update-location/');
 
     try {
       final response = await http.post(

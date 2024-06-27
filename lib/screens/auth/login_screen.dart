@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
 
-    final url = 'https://supernova-fqn8.onrender.com/api/users/loginUser/';
+    final url = 'http://64.23.186.45/api/users/loginUser/';
 
     try {
       final response = await http.post(

@@ -90,7 +90,7 @@ Future<void> _logout(BuildContext context) async {
   print('Refresh Token: $refreshToken');
 
   final response = await http.post(
-    Uri.parse('https://supernova-fqn8.onrender.com/api/users/logout/'),
+    Uri.parse('http://64.23.186.45/api/users/logout/'),
     headers: {
       'Authorization': 'Bearer $accessToken',
     },

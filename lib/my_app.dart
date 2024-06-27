@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:yousafe/screens/pages/home_page.dart';
-import 'package:yousafe/screens/pages/mpesa_payment.dart';
+import 'package:yousafe/screens/pages/subscription_page.dart';
 import 'screens/onboarding/splash_screen.dart';
 import 'screens/onboarding/onboarding_one.dart';
 import 'screens/onboarding/onboarding_two.dart';
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
         '/sos': (context) => SOSRequestWidget(),
         '/contacts': (context) => EmergencyContactsPage(),
         '/payments': (context) => PaymentsPage(),
-        '/mpesa': (context) => MPesaPaymentPage(),
+        '/subscription': (context) => SubscriptionPlansPage(),
       },
     );
   }

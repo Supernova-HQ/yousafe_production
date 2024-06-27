@@ -28,7 +28,7 @@ class SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
 
-    final url = 'https://supernova-fqn8.onrender.com/api/users/register/';
+    final url = 'http://64.23.186.45/api/users/register/';
     final body = {
       'email': email,
       'full_name': fullName,

@@ -22,7 +22,7 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
 
   Future<void> fetchEmergencyContacts() async {
     final accessToken = await storage.read(key: 'access_token');
-    final url = 'https://supernova-fqn8.onrender.com/api/main/contacts/';
+    final url = 'http://64.23.186.45/api/main/contacts/';
 
     try {
       final response = await http.get(
@@ -48,7 +48,7 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
 
   Future<void> createEmergencyContact(String name, String mobileNo) async {
     final accessToken = await storage.read(key: 'access_token');
-    final url = 'https://supernova-fqn8.onrender.com/api/main/create-contact/';
+    final url = 'http://64.23.186.45/api/main/create-contact/';
 
     try {
       final response = await http.post(
@@ -127,7 +127,7 @@ class _EmergencyContactsPageState extends State<EmergencyContactsPage> {
                   onPressed: () async {
                     final contactId = contact['id'];
                     final accessToken = await storage.read(key: 'access_token');
-                    final url = 'https://supernova-fqn8.onrender.com/api/main/delete-contact/$contactId/';
+                    final url = 'http://64.23.186.45/api/main/delete-contact/$contactId/';
 
                     try {
                       final response = await http.delete(

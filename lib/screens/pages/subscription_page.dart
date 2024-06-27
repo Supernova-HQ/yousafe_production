@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,31 +36,12 @@ class _SubscriptionPlansPageState extends State<SubscriptionPlansPage> {
     _paystackPlugin.initialize(publicKey: publicKey);
   }
 
-  void _subscribe(String planName, int amount) async {
-    Charge charge = Charge()
-      ..amount = amount * 100  // Amount in kobo (100 kobo = 1 KES)
-      ..email = 'customer@example.com'
-      ..currency = 'KES'  // or 'GHS' for Ghana
-      ..reference = _getReference()
-      ..plan = planName;
-
-    CheckoutResponse response = await _paystackPlugin.checkout(
-      context,
-      method: CheckoutMethod.card,  // Defaults to CheckoutMethod.selectable
-      charge: charge,
-    );
-
-    if (response.status) {
-      // Payment successful
-      print('Payment successful: ${response.reference}');
+  Future<void> _subscribe(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
-      // Payment failed
-      print('Payment failed: ${response.message}');
+      throw 'Could not launch $url';
     }
-  }
-
-  String _getReference() {
-    return 'ChargedFromFlutter_${DateTime.now().millisecondsSinceEpoch}';
   }
 
   @override
@@ -71,18 +54,18 @@ class _SubscriptionPlansPageState extends State<SubscriptionPlansPage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            _buildPlanCard('Individual Plan (Monthly Subscription)', 'KES 640.00/Month', 'PLN_h58iy9n4haqr7pi', 640),
-            _buildPlanCard('Individual Plan (Yearly Subscription)', 'KES 7,680.00/Annum', 'PLN_gxgspy3sv08vd7x', 7680),
-            _buildPlanCard('Student Plan', 'KES 256.00/Month', 'PLN_jliiutwl1j5hanf', 256),
-            _buildPlanCard('Family Plan (Monthly Subscription)', 'KES 1,000.00/ per family per year', 'PLN_uzjf8ngzhfrpae3', 1000),
-            _buildPlanCard('Family Plan (Yearly Subscription)', 'KES 12,000.00/ per family per year', 'PLN_fhjlewwznm17att', 12000),
+            _buildPlanCard('Individual Plan (Monthly Subscription)', 'KES 640.00/Month', 'https://paystack.com/pay/8i851orhuo'),
+            _buildPlanCard('Individual Plan (Yearly Subscription)', 'KES 7,680.00/Annum', 'https://paystack.com/pay/8reh762sd6'),
+            _buildPlanCard('Student Plan', 'KES 256.00/Month', 'https://paystack.com/pay/capse--g8p'),
+            _buildPlanCard('Family Plan (Monthly Subscription)', 'KES 1,000.00/ per family per year', 'https://paystack.com/pay/h2j033u3fd'),
+            _buildPlanCard('Family Plan (Yearly Subscription)', 'KES 12,000.00/ per family per year', 'https://paystack.com/pay/r2nv3vwk-s'),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildPlanCard(String planName, String amount, String planCode, int amountValue) {
+  Widget _buildPlanCard(String planName, String amount, String url) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: Padding(
@@ -98,12 +81,13 @@ class _SubscriptionPlansPageState extends State<SubscriptionPlansPage> {
             Text(
               amount,
               style: TextStyle(fontSize: 16.0),
+              
             ),
             SizedBox(height: 16.0),
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
-                onPressed: () => _subscribe(planCode, amountValue),
+                onPressed: () => _subscribe(url),
                 child: Text('Subscribe'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,

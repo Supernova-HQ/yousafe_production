@@ -58,6 +58,12 @@ dev_dependencies:
   google_maps_flutter: ^2.5.3
   google_maps_utils: ^2.0.0
 
+  
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.1.7  # Check for the latest version
+
  
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -51,7 +51,7 @@ android {
         applicationId "com.yousafeapp.yousafe"
         // You can update the following values to match your application needs.
                
-        minSdkVersion 20
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

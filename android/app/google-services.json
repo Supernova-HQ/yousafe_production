@@ -14,6 +14,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "983203290530-04ud12vt308ltj7lmp1ksvm3qpumf1ef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yousafeapp.yousafe",
+            "certificate_hash": "fd015377f2bb0e802b875467ede03bcfa5f9e171"
+          }
+        },
+        {
+          "client_id": "983203290530-4lasqs3mgas0gqon4j4jccp4sp0vbfvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yousafeapp.yousafe",
+            "certificate_hash": "e952828564b65cdf7846159b3e423d969a56deb3"
+          }
+        },
+        {
+          "client_id": "983203290530-mgemgp6jpnf3drt44qh8mgkqjiscld2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yousafeapp.yousafe",
+            "certificate_hash": "536a992e22f038b43fc6a8a07af507ebcc9ebe41"
+          }
+        },
+        {
           "client_id": "983203290530-p47ieeqeljh252okvj57t3algdivk75g.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -27,8 +51,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "983203290530-p47ieeqeljh252okvj57t3algdivk75g.apps.googleusercontent.com",
+              "client_id": "983203290530-ffk31bbr84pq0omv0v4s882brm7saphl.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "983203290530-1fa2jbhs5bj303875qpib0k7lcmrcdrs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yousafeapp.yousafe"
+              }
             }
           ]
         }

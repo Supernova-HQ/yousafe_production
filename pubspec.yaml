@@ -41,7 +41,7 @@ dependencies:
   flutter_background_service: ^5.0.5
   shared_preferences: ^2.2.3
   flutter_background: ^1.2.0
-  
+  url_launcher: ^6.1.7 
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,13 +58,6 @@ dev_dependencies:
   google_maps_flutter: ^2.5.3
   google_maps_utils: ^2.0.0
 
-  
-dependencies:
-  flutter:
-    sdk: flutter
-  url_launcher: ^6.1.7  # Check for the latest version
-
- 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

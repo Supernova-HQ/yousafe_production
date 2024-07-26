@@ -98,6 +98,25 @@ class _PaymentsPageState extends State<PaymentsPage> {
                 ),
               ),
             ),
+            SizedBox(height:16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: (){
+                  Navigator.pushReplacement(context, '/homepage' as Route<Object?>);
+                },
+                child: Text('Skip',
+                style: TextStyle(color: Colors.white),
+                ),
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(color: Colors.purple)
+                  )
+                ),
+              ),
+            )
           ],
         ),
       ),

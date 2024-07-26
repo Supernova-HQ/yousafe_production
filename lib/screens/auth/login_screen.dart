@@ -6,116 +6,7 @@ import 'package:yousafe/screens/auth/forgot_password_screen.dart';
 import 'package:yousafe/screens/auth/signup_screen.dart';
 import 'package:yousafe/screens/pages/emergency_contacts_page.dart';
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final storage = FlutterSecureStorage();
-  bool _isLoading = false;
-
-  Future<void> loginUser(String email, String password) async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    final url = 'https://supernova-fqn8.onrender.com/api/users/loginUser/';
-
-    try {
-      final response = await http.post(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-        }),
-      );
-
-      print('Response status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
-      if (response.statusCode == 200) {
-        // Login successful
-        final responseData = jsonDecode(response.body);
-        final accessToken = responseData['token']['access'];
-        final refreshToken = responseData['token']['refresh'];
-
-        // Store the access and refresh tokens securely
-        try {
-          await storage.write(key: 'access_token', value: accessToken);
-          await storage.write(key: 'refresh_token', value: refreshToken);
-
-          // Show success SnackBar
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Login successful'),
-              backgroundColor: Colors.green,
-            ),
-          );
-
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => EmergencyContactsPage()),
-          );
-        } catch (e) {
-          print('Token storage error: $e');
-          // Handle token storage error
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Login Error'),
-              content: Text('An error occurred while storing the tokens. Please try again later.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
-      } else {
-        // Login failed
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Login Failed'),
-            content: Text('Invalid email or password. Please try again.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    } catch (error) {
-      print('Login error: $error');
-      // Error occurred during login
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Login Error'),
-          content: Text('An error occurred during login. Please try again later.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,74 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(25.0),
               child: Column(
                 children: [
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _isLoading
-                          ? null
-                          : () {
-                              final email = _emailController.text;
-                              final password = _passwordController.text;
-
-                              loginUser(email, password);
-                            },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purple,
-                        padding: EdgeInsets.all(16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      child: _isLoading
-                          ? SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Login',
-                                style: TextStyle(color: Colors.white, fontSize: 18),
-                              ),
-                            ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
-                      );
-                    },
-                    child: const Text('Forgot Password?'),
-                  ),
-                  const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(
@@ -254,7 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
 
 class WaveClipper extends CustomClipper<Path> {
   @override

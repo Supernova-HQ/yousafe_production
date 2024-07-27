@@ -81,7 +81,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/mpesa');
+                  Navigator.pushReplacementNamed(context, '/payments');
                   // Handle subscribe button press
                 },
                 child: Padding(

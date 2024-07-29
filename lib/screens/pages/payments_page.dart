@@ -105,8 +105,8 @@ class _PaymentsPageState extends State<PaymentsPage> {
                 onPressed: (){
                   Navigator.pushReplacement(context, '/homepage' as Route<Object?>);
                 },
-                child: Text('Skip',
-                style: TextStyle(color: Colors.white),
+                child: Text('Skip Now',
+                style: TextStyle(color: Colors.purple),
                 ),
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 16),

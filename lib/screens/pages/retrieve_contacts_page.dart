@@ -20,7 +20,7 @@ class _RetrieveContactsPageState extends State<RetrieveContactsPage> {
 
   Future<void> fetchEmergencyContacts() async {
     final accessToken = await storage.read(key: 'access_token');
-    final url = 'https://supernova-fqn8.onrender.com/api/main/contact';
+    final url = 'http://64.23.186.45/api/main/contact';
 
     try {
       final response = await http.get(

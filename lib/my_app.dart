@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
         '/sos': (context) => SOSRequestWidget(),
         '/contacts': (context) => EmergencyContactsPage(),
         '/payments': (context) => PaymentsPage(),
-        '/mpesa': (context) => MPesaPaymentPage(),
+        // '/mpesa': (context) => MPesaPaymentPage(),
       },
     );
   }

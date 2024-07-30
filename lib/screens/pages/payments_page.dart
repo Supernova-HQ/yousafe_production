@@ -33,42 +33,11 @@ class _PaymentsPageState extends State<PaymentsPage> {
             // ),
             SizedBox(height: 24),
             Text(
-              'Pick a subscription',
+              'Payments are collected securely by Paystack; ensure you use the same email address you used to sign up for YouSafe to avoid any issues with your subscription. Thank you',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _selectedSubscription = 'Annual - 2 Months free';
-                });
-              },
-              child: _buildSubscriptionOption(
-                'Student Plan',
-                '\For GHC 12.00/ month, this plan includes SOS Button,add upto 5 Emergency contacts and live location sharing',
-                '',
-                _selectedSubscription == 'Annual - 2 Months free'
-                    ? Colors.purple[100]!
-                    : Colors.grey[300]!,
-              ),
-            ),
-            SizedBox(height: 16),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _selectedSubscription = 'Monthly - 2 weeks free';
-                });
-              },
-              child: _buildSubscriptionOption(
-                'Individual User Plan',
-                '\GHC 50.00/ month, this plan includes SOS Button,add upto 5 Emergency contacts and live location sharing and Trauma counselling',
-                'Free Counselling',
-                _selectedSubscription == 'Monthly - 2 weeks free'
-                    ? Colors.purple[100]!
-                    : Colors.grey[300]!,
-              ),
-            ),
             SizedBox(height: 24),
+            
             Text(
               'Terms of Service & Privacy Policy',
               style: TextStyle(
@@ -81,12 +50,12 @@ class _PaymentsPageState extends State<PaymentsPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/mpesa');
-                  // Handle subscribe button press
+                  Navigator.pushReplacementNamed(context, '/subscription');
+                  
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Proceed to Pay',
+                  child: Text('Proceed to See Plans',
                       style: TextStyle(color: Colors.white)),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -98,25 +67,27 @@ class _PaymentsPageState extends State<PaymentsPage> {
                 ),
               ),
             ),
-            SizedBox(height:16),
+            SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: (){
-                  Navigator.pushReplacement(context, '/homepage' as Route<Object?>);
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context); // Or any other cancel action
                 },
-                child: Text('Skip Now',
-                style: TextStyle(color: Colors.purple),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Cancel',
+                      style: TextStyle(color: Colors.purple)),
                 ),
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: Colors.purple)
-                  )
+                    side: BorderSide(color: Colors.purple),
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:yousafe/screens/auth/login_screen.dart';
+import 'package:yousafe/screens/pages/home_page.dart';
 import 'package:yousafe/screens/pages/payments_page.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -81,7 +82,7 @@ class SignupScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         },
                         child: const Text('Login'),

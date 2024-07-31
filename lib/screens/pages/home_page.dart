@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:yousafe/screens/pages/emergency_contacts_page.dart';
 import 'package:yousafe/screens/pages/hotspots_page.dart';
 import 'package:yousafe/screens/pages/live_location_page.dart';
@@ -30,9 +31,23 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _shareApp() {
+    final String appLink = 'ttps://play.google.com/store/apps/details?id=com.yousafeapp.yousafe&hl=en-US&ah=Y8iaaSprpjcsQEI8A4a51LhZKUE&pli=1'; //  yousafe app link for download
+    Share.share('Check yousafe, a personal safety app:');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('YouSafe'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: _shareApp,
+          ),
+        ],
+      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,

@@ -9,7 +9,7 @@ class SubscriptionPlansPage extends StatefulWidget {
 
 class _SubscriptionPlansPageState extends State<SubscriptionPlansPage> {
   final String secretKey = 'your_secret_key_here';
-  final String customerEmail = 'customer@example.com';
+  final String customerEmail = 'info@yousafeapp.com';
   final Uuid _uuid = Uuid();
 
   void _initiatePayment(BuildContext context, String planName, double amount) {

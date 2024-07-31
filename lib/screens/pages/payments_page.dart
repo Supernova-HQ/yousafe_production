@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class PaymentsPage extends StatefulWidget {
   @override
   _PaymentsPageState createState() => _PaymentsPageState();
@@ -37,7 +36,6 @@ class _PaymentsPageState extends State<PaymentsPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 24),
-            
             Text(
               'Terms of Service & Privacy Policy',
               style: TextStyle(
@@ -51,7 +49,6 @@ class _PaymentsPageState extends State<PaymentsPage> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/subscription');
-                  
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -72,11 +69,11 @@ class _PaymentsPageState extends State<PaymentsPage> {
               width: double.infinity,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Or any other cancel action
+                  Navigator.pushReplacementNamed(context, '/homepage'); // Navigate to the homepage
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Cancel',
+                  child: Text('Skip Now',
                       style: TextStyle(color: Colors.purple)),
                 ),
                 style: TextButton.styleFrom(

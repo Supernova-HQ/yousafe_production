@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>983203290530-1fa2jbhs5bj303875qpib0k7lcmrcdrs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.983203290530-1fa2jbhs5bj303875qpib0k7lcmrcdrs</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>983203290530-04ud12vt308ltj7lmp1ksvm3qpumf1ef.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCtmbgpysQ2z7QYGfWMhTLYwuMBRtYwA2c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>983203290530</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yousafeapp.yousafe</string>
+	<key>PROJECT_ID</key>
+	<string>yousafe-cccc4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yousafe-cccc4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:983203290530:ios:be9bec7f01a0d4aab9a6fb</string>
+</dict>
+</plist>

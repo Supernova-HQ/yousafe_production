@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "983203290530-64o1ro3vb6epn2firi0nmdb5ti0rabpj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yousafeapp.yousafe",
+            "certificate_hash": "1a441e1b1af04c1f3a628760786ce228b23133d2"
+          }
+        },
+        {
           "client_id": "983203290530-mgemgp6jpnf3drt44qh8mgkqjiscld2p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
